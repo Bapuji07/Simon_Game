@@ -8,13 +8,26 @@ let highscore = 1;
 
 let h2 = document.querySelector("h2");
 let h3 = document.querySelector("h3");
-document.addEventListener("keypress", function(){
+let startBtn= document.querySelector(".btn-enter")
+let endBtn = document.querySelector("#btn-end");
+const instructionDiv = document.querySelector('.instruction');
+
+startBtn.addEventListener("click", function(){
     if (started == false) {
         console.log("Game Started");
-        started = true;       
+        started = true; 
+        startBtn.style.display='none'
+        endBtn.style.display='block'
         levelUp(); 
+        toggleInstructions();
+        
     }
 });
+endBtn.addEventListener("click",function(){
+   
+});
+
+
 
 function btnFlash(btn){
     btn.classList.add("flashBtn");
@@ -32,6 +45,7 @@ function userFlash(btn){
 function levelUp() {
     userSeq = [];
     level++;
+    toggleInstructions();
     if(level >= highscore){
         highscore = level;
     }
@@ -50,12 +64,15 @@ function checkAns(idx) {
             setTimeout(levelUp, 1000);
         }
     } else {
-        h2.innerHTML = `Game Over! Your score was <b>${level}</b> <br> Press any Key to Start.`;
+        h2.innerHTML = `Game Over! Your score was <b>${level}</b> <br> Press start game for new game.`;
         h3.innerHTML =`Highest Score =  ${highscore}`;
         document.querySelector("body").style.backgroundColor = "red";
         setTimeout(function () {
             document.querySelector("body").style.backgroundColor = "white";
         }, 1000)
+        instructionDiv.style.display = 'none'
+        startBtn.style.display='block'
+        endBtn.style.display='none'
         reset();
     }
 }
@@ -71,8 +88,8 @@ function btnPress() {
 }
 
 let allBtns = document.querySelectorAll(".btn");
-for (btn of allBtns) {
-    btn.addEventListener("click", btnPress);
+for (btnn of allBtns) {
+    btnn.addEventListener("click", btnPress);
 }
 
 function reset() {
@@ -81,4 +98,13 @@ function reset() {
     userSeq = [];
     level = 0;
 }
+function toggleInstructions() {
+    if (level === 1 || level === 2) {
+        instructionDiv.style.display = 'block'; // Show instructions for levels 1 and 2
+    } else {
+        instructionDiv.style.display = 'none'; // Hide instructions for other levels
+    }
+}
+
+toggleInstructions();
 
