@@ -9,7 +9,7 @@ let highscore = 1;
 let h2 = document.querySelector("h2");
 let h3 = document.querySelector("h3");
 let startBtn= document.querySelector(".btn-enter")
-let endBtn = document.querySelector("#btn-end");
+let endBtn = document.querySelector(".btn-end");
 const instructionDiv = document.querySelector('.instruction');
 
 startBtn.addEventListener("click", function(){
@@ -23,8 +23,9 @@ startBtn.addEventListener("click", function(){
         
     }
 });
-endBtn.addEventListener("click",function(){
-   
+endBtn.addEventListener("click",function(idx){
+    reset();
+    checkAns(idx)
 });
 
 
@@ -54,7 +55,7 @@ function levelUp() {
     let randColor = btns[randIdx];
     let randBtn = document.querySelector(`.${randColor}`);
     gameSeq.push(randColor);
-    console.log(gameSeq);
+    // console.log(gameSeq);
     btnFlash(randBtn);
 }
 

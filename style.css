@@ -44,14 +44,14 @@ body {
 .userFlash {
     background-color: aquamarine;
 }
-.btn-enter,#btn-end{
+.btn-enter,.btn-end{
     padding: 5px 10px;
     font-size: 20px;
     border-radius: 10px;
     width: 150px;
     margin: auto;
 }
-#btn-end{
+.btn-end{
     display: none;
    
 }
